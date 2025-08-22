@@ -9,6 +9,8 @@ export default function GeneralInfo() {
     phone: "",
   });
 
+  const [isEditing, setIsEditing] = useState(true);
+
   function handleChange(e) {
     const { name, value } = e.target;
     setPerson((prev) => ({
@@ -17,49 +19,71 @@ export default function GeneralInfo() {
     }));
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsEditing(false);
+  }
+
+  function handleEdit() {
+    setIsEditing(true);
+  }
+
   return (
-    <>
-      <input
-        type="text"
-        name="name"
-        placeholder="Jonathan Roy"
-        value={person.name}
-        onChange={handleChange}
-      />
-      <div>
-        <textarea
-          name="textarea"
-          type="text"
-          placeholder="I am a [Current Position], currently working at [Current Company]. I help companies build products from zero to one. This is a brief description about you. Write some details about yourself, and make it meaningful. Maximum 3 lines of text."
-          rows={5}
-          cols={50}
-          value={person.textarea}
-          onChange={handleChange}
-        ></textarea>
-      </div>
-      <div>
-        <input
-          type="url"
-          name="portfolio"
-          placeholder="www.yourportfolio.com"
-          value={person.portfolio}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="doomsday@gmail.com"
-          value={person.email}
-          onChange={handleChange}
-        />
-        <input
-          type="tel"
-          name="phone"
-          placeholder="080-9090-2340"
-          value={person.phone}
-          onChange={handleChange}
-        />
-      </div>
-    </>
+    <div>
+      {isEditing ? (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Jonathan Roy"
+            value={person.name}
+            onChange={handleChange}
+          />
+          <div>
+            <textarea
+              name="textarea"
+              placeholder="I am a [Current Position]..."
+              rows={5}
+              cols={50}
+              value={person.textarea}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+          <div>
+            <input
+              type="url"
+              name="portfolio"
+              placeholder="www.yourportfolio.com"
+              value={person.portfolio}
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="doomsday@gmail.com"
+              value={person.email}
+              onChange={handleChange}
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="080-9090-2340"
+              value={person.phone}
+              onChange={handleChange}
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      ) : (
+        <div>
+          <p><strong>Name:</strong> {person.name}</p>
+          <p><strong>About:</strong> {person.textarea}</p>
+          <p><strong>Portfolio:</strong> {person.portfolio}</p>
+          <p><strong>Email:</strong> {person.email}</p>
+          <p><strong>Phone:</strong> {person.phone}</p>
+          <button onClick={handleEdit}>Edit</button>
+        </div>
+      )}
+    </div>
   );
 }
