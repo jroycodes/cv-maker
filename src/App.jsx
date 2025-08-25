@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <GeneralInfo />
-      <Education />
       <Experience />
+      <Education />
       <Skills />
     </>
   );
