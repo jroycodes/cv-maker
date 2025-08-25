@@ -36,14 +36,13 @@ export default function Education() {
   }
 
   return (
-    <div>
+    <div className="flex flex-wrap gap-12 m-8">
       <h1>Education</h1>
-
       {isEditing ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 ">
           {education.map((edu, index) => (
-            <div key={index}>
-              <div>
+            <div key={index} className="flex flex-col gap-4">
+              <div className="flex gap-4">
                 <input
                   type="text"
                   name="school"
@@ -59,50 +58,54 @@ export default function Education() {
                   onChange={(e) => handleEducationChange(index, e)}
                 />
               </div>
-              <input
-                type="date"
-                name="startYear"
-                placeholder="Start date"
-                value={edu.startYear}
-                onChange={(e) => handleEducationChange(index, e)}
-              />
-              <input
-                type="date"
-                name="finishYear"
-                placeholder="Finish Year"
-                value={edu.finishYear}
-                onChange={(e) => handleEducationChange(index, e)}
-              />
+              <div className="flex gap-4">
+                <input
+                  type="date"
+                  name="startYear"
+                  placeholder="Start date"
+                  value={edu.startYear}
+                  onChange={(e) => handleEducationChange(index, e)}
+                />
+                <input
+                  type="date"
+                  name="finishYear"
+                  placeholder="Finish Year"
+                  value={edu.finishYear}
+                  onChange={(e) => handleEducationChange(index, e)}
+                />
+              </div>
             </div>
           ))}
-          <button type="button" onClick={addEducation}>
-            Add
-          </button>
-          <button type="submit">Submit</button>
+          <div>
+            <button type="button" onClick={addEducation} className="mb-4">
+              Add
+            </button>
+            <div>
+              <button type="submit">Save</button>
+            </div>
+          </div>
         </form>
       ) : (
-        <div>
+        <div className="flex flex-col gap-6 ">
           {education.map((edu, index) => (
             <div key={index}>
-              <div>
+              <div className="flex gap-4">
                 <p>
-                  <strong>School:</strong> {edu.school}
+                  <strong>{edu.school}</strong>
                 </p>
-                <p>
-                  <strong>Course:</strong> {edu.course}
+                <p className="text-gray-500">
+                  <strong>{edu.course}</strong>
                 </p>
               </div>
-              <div>
-                <p>
-                  <strong>Start Year:</strong> {edu.startYear}
-                </p>
-                <p>
-                  <strong>Finish Year:</strong> {edu.finishYear}
-                </p>
+              <div className="flex gap-4">
+                <p className="text-gray-500">{edu.startYear}</p>
+                <p className="text-gray-500">{edu.finishYear}</p>
               </div>
             </div>
           ))}
-          <button onClick={handleEdit}>Edit</button>
+          <div>
+            <button onClick={handleEdit}>Edit</button>
+          </div>
         </div>
       )}
     </div>

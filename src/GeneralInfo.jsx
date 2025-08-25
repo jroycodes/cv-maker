@@ -45,7 +45,7 @@ export default function GeneralInfo() {
               name="textarea"
               placeholder="I am a [Current Position]..."
               rows={5}
-              cols={100}
+              cols={80}
               value={person.textarea}
               onChange={handleChange}
             ></textarea>

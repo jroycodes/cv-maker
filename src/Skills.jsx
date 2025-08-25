@@ -19,23 +19,25 @@ export default function Skills() {
 
   return (
     <>
-      <div>
+      <div className="flex flex-wrap gap-12 m-8">
         <h1>Skills</h1>
         {isEditing ? (
-          <form onSubmit={handleSubmit}>
-            <div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4">
               <textarea
                 value={skills}
                 onChange={handleChange}
                 placeholder="List your skills here, seperated by commas or line breaks"
-                rows={5}
-                cols={50}
+                rows={2}
+                cols={80}
               />
             </div>
-            <button type="submit">Save</button>
+            <div>
+              <button type="submit">Save</button>
+            </div>
           </form>
         ) : (
-          <div>
+          <div className="flex flex-col flex-wrap gap-6">
             <div>
               <p>{skills}</p>
             </div>
