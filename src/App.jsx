@@ -1,4 +1,3 @@
-import "./App.css";
 import Education from "./Education";
 import Experience from "./Experience";
 import GeneralInfo from "./GeneralInfo";
