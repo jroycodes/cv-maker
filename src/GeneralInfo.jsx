@@ -31,11 +31,12 @@ export default function GeneralInfo() {
   return (
     <div>
       {isEditing ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 m-8">
           <input
+            className="w-fit"
             type="text"
             name="name"
-            placeholder="Jonathan Roy"
+            placeholder="Your Name"
             value={person.name}
             onChange={handleChange}
           />
@@ -44,12 +45,12 @@ export default function GeneralInfo() {
               name="textarea"
               placeholder="I am a [Current Position]..."
               rows={5}
-              cols={50}
+              cols={100}
               value={person.textarea}
               onChange={handleChange}
             ></textarea>
           </div>
-          <div>
+          <div className="flex flex-row gap-12">
             <input
               type="url"
               name="portfolio"
@@ -72,16 +73,32 @@ export default function GeneralInfo() {
               onChange={handleChange}
             />
           </div>
-          <button type="submit">Submit</button>
+          <div>
+            <button type="submit">Save</button>
+          </div>
         </form>
       ) : (
-        <div>
-          <p><strong>Name:</strong> {person.name}</p>
-          <p><strong>About:</strong> {person.textarea}</p>
-          <p><strong>Portfolio:</strong> {person.portfolio}</p>
-          <p><strong>Email:</strong> {person.email}</p>
-          <p><strong>Phone:</strong> {person.phone}</p>
-          <button onClick={handleEdit}>Edit</button>
+        <div className="flex flex-col gap-4 m-8">
+          <div className="flex flex-col gap-4">
+            <h1>
+              <strong>{person.name}</strong>
+            </h1>
+            <p className="max-w-3xl">{person.textarea}</p>
+            <div className="flex flex-row flex-wrap gap-8 ">
+              <p>
+                <strong>Portfolio:</strong> {person.portfolio}
+              </p>
+              <p>
+                <strong>Email:</strong> {person.email}
+              </p>
+              <p>
+                <strong>Phone:</strong> {person.phone}
+              </p>
+            </div>
+          </div>
+          <div>
+            <button onClick={handleEdit}>Edit</button>
+          </div>
         </div>
       )}
     </div>
